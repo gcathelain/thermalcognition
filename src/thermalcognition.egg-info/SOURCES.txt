@@ -1,0 +1,14 @@
+README.md
+setup.py
+src/thermalcognition/__init__.py
+src/thermalcognition/align.py
+src/thermalcognition/calibration.py
+src/thermalcognition/landmarks.py
+src/thermalcognition/models.py
+src/thermalcognition/reader.py
+src/thermalcognition/synchronization.py
+src/thermalcognition/vitals.py
+src/thermalcognition.egg-info/PKG-INFO
+src/thermalcognition.egg-info/SOURCES.txt
+src/thermalcognition.egg-info/dependency_links.txt
+src/thermalcognition.egg-info/top_level.txt

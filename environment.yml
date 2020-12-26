@@ -1,0 +1,30 @@
+name: thermalcognition
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8.0
+  - pytorch
+  - torchvision
+  - torchaudio
+#  - cudatoolkit=9.2  #uncomment when using Windows or Linux with CUDA 9.2
+  - cudatoolkit=10.1  #comment when using Mac, CPU or other CUDA version
+#  - cudatoolkit=10.2  #uncomment when using Windows or Linux with CUDA 10.2
+#  - cudatoolkit=11.0  #uncomment when using Windows or Linux with CUDA 11.0
+#  - cpuonly           #uncomment when using Windows or Linux with CPU
+  - pip:
+      - numpy==1.19.4
+      - pillow==8.0.1
+      - matplotlib==3.3.3
+      - pytesseract==0.3.7
+      - scikit-learn==0.24.0
+      - pandas==1.1.5
+      - tqdm==4.54.1
+      - spacy==2.3.5
+      - sk-video==1.1.10
+      - scikit-image==0.18.1
+      - ffprobe-python==1.0.3
+      - jupyterlab==2.2.9
+      - sphinx
+      - openpyxl==3.0.5

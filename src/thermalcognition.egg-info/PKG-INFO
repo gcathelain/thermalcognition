@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: thermalcognition
+Version: 0.0
+Summary: Process thermal videos for emotion recognition.
+Home-page: https://github.com/gcathelain/thermalcognition
+Author: Guillaume Cathelain
+Author-email: guillaume.cathelain@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown

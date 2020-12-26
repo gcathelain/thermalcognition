@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Installation &#8212; thermalcognition 0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started" href="quickstart.html" />
+    <link rel="prev" title="Welcome to thermalcognition’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="python-environment">
+<h2>Python environment<a class="headerlink" href="#python-environment" title="Permalink to this headline">¶</a></h2>
+<p>Install Miniconda3 from executable or command line (<a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html#installing-in-silent-mode">https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html#installing-in-silent-mode</a>).</p>
+<div class="section" id="on-linux-or-mac">
+<h3>On Linux or Mac<a class="headerlink" href="#on-linux-or-mac" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>wget  <a class="reference external" href="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh">https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh</a> -O ~/miniconda.sh</p>
+<p>sha256sum ~/miniconda.sh</p>
+<p>bash ~/miniconda.sh -b -p $HOME/miniconda</p>
+<p>eval “$(~/miniconda/bin/conda shell.bash hook)”</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="cuda-toolkit">
+<h2>CUDA Toolkit<a class="headerlink" href="#cuda-toolkit" title="Permalink to this headline">¶</a></h2>
+<p>If you want to use your GPU capabilities, download and follow the instructions here : <a class="reference external" href="https://developer.nvidia.com/cuda-toolkit-archive">https://developer.nvidia.com/cuda-toolkit-archive</a>
+We have tested the following configuration : Windows 10, CUDA 10.2. In case you have a different configuration, please change the environment.yml accordingly.</p>
+</div>
+<div class="section" id="thermalcognition-environment">
+<h2>thermalcognition environment<a class="headerlink" href="#thermalcognition-environment" title="Permalink to this headline">¶</a></h2>
+<p>Import a new conda environment :</p>
+<blockquote>
+<div><p>conda env create -f environment.yml</p>
+</div></blockquote>
+<p>Then the newly created environment must be activated :</p>
+<blockquote>
+<div><p>conda activate thermalcognition</p>
+</div></blockquote>
+</div>
+<div class="section" id="flir-science-file-environment">
+<h2>FLIR Science File environment<a class="headerlink" href="#flir-science-file-environment" title="Permalink to this headline">¶</a></h2>
+<p>To open FLIR files, we provide the official SDK in ./FLIR Science File SDK. It can be downloaded from can be downloaded there : <a class="reference external" href="https://flir.custhelp.com/app/account/fl_download_software">https://flir.custhelp.com/app/account/fl_download_software</a> if you create a free FLIR developer account.
+Please select one of them and run it. Then, follow the instructions in the default location C:/Program%20Files/FLIR%20Systems/sdks/file/python/doc/index.html :</p>
+<blockquote>
+<div><p>python setup.py install</p>
+</div></blockquote>
+<p>in the C:Program FilesFLIR Systemssdksfilepython directory.</p>
+</div>
+<div class="section" id="thermalcognition-package">
+<h2>thermalcognition package<a class="headerlink" href="#thermalcognition-package" title="Permalink to this headline">¶</a></h2>
+<p>The thermalcognition package is installed by running in the root directory :</p>
+<blockquote>
+<div><p>pip install .</p>
+</div></blockquote>
+<p>It can be uninstalled by running :</p>
+<blockquote>
+<div><p>pip uninstall thermalcognition</p>
+</div></blockquote>
+</div>
+<div class="section" id="development-mode">
+<h2>Development mode<a class="headerlink" href="#development-mode" title="Permalink to this headline">¶</a></h2>
+<p>thermalcognition can be installed in development mode using :</p>
+<blockquote>
+<div><p>pip install -e .</p>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">thermalcognition</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#python-environment">Python environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cuda-toolkit">CUDA Toolkit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#thermalcognition-environment">thermalcognition environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flir-science-file-environment">FLIR Science File environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#thermalcognition-package">thermalcognition package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-mode">Development mode</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to thermalcognition’s documentation!</a></li>
+      <li>Next: <a href="quickstart.html" title="next chapter">Getting Started</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Guillaume Cathelain.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/installation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

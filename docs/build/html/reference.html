@@ -1,0 +1,1140 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Reference &#8212; thermalcognition 0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Getting Started" href="quickstart.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<p>You will find here the documentation of the modules’ functions.</p>
+<div class="section" id="module-thermalcognition.align">
+<span id="align"></span><h2>align<a class="headerlink" href="#module-thermalcognition.align" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions for aligning thermal and visible images. Works with PiP and MSX mode of FLIR images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright</dt>
+<dd class="field-odd"><ol class="loweralpha simple" start="3">
+<li><p>2020 EPHE</p></li>
+</ol>
+</dd>
+<dt class="field-even">license</dt>
+<dd class="field-even"><p>MIT License, see LICENSE for details</p>
+</dd>
+<dt class="field-odd">author</dt>
+<dd class="field-odd"><p>Guillaume Cathelain</p>
+</dd>
+<dt class="field-even">organization</dt>
+<dd class="field-even"><p>EPHE</p>
+</dd>
+<dt class="field-odd">contact</dt>
+<dd class="field-odd"><p><a class="reference external" href="mailto:guillaume&#46;cathelain&#37;&#52;&#48;gmail&#46;com">guillaume<span>&#46;</span>cathelain<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+</dd>
+<dt class="field-even">date</dt>
+<dd class="field-even"><p>22/12/2020</p>
+</dd>
+<dt class="field-odd">version</dt>
+<dd class="field-odd"><p>0.0</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt id="thermalcognition.align.align_flir_visible_thermal">
+<code class="sig-prename descclassname">thermalcognition.align.</code><code class="sig-name descname">align_flir_visible_thermal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_path</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">colorscale</span><span class="o">=</span><span class="default_value">'plasma'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.align.align_flir_visible_thermal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aligns visible and thermal FLIR images in PiP or MSX mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_path</strong> – string
+Path of the .jpg FLIR image, containing thermal and visible images.</p></li>
+<li><p><strong>save</strong> – bool
+Save metadata.csv, visible.jpg, thermal.jpg and flir.jpg images</p></li>
+<li><p><strong>colorscale</strong> – string
+Colorscale to use when saving thermal images. Plasma is near the Flir Iron corlorscale</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple
+(thermal, visible) images</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.align.build_flir_pip">
+<code class="sig-prename descclassname">thermalcognition.align.</code><code class="sig-name descname">build_flir_pip</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_path</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.align.build_flir_pip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reconstruct PiP image from scratch</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_path</strong> – string
+Flir PiP image</p></li>
+<li><p><strong>save</strong> – bool
+Whether to save the generated PiP image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(h, w, 3) array
+Reconstructed flir PiP image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.align.face_template_matching">
+<code class="sig-prename descclassname">thermalcognition.align.</code><code class="sig-name descname">face_template_matching</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">visible_image</span></em>, <em class="sig-param"><span class="n">thermal_image</span></em>, <em class="sig-param"><span class="n">bboxlist</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.align.face_template_matching" title="Permalink to this definition">¶</a></dt>
+<dd><p>Align visible and thermal face imaging using template matching. Used in VIS-TH database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>visible_image</strong> – (h, w, 3) ndarray
+Visible image on which face was detected</p></li>
+<li><p><strong>thermal_image</strong> – (h, w) ndarray
+Thermal image to align</p></li>
+<li><p><strong>bboxlist</strong> – tuple
+x1, y1, x2, y2, confidence boundaries of the visible face box</p></li>
+<li><p><strong>net_resolution</strong> – int
+Size of the input layer of the neural network. Default for FAN</p></li>
+<li><p><strong>device</strong> – “cpu” or “cuda”
+Whether to use GPU or CPU</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple
+visible_face and thermal_face</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.align.get_ratio">
+<code class="sig-prename descclassname">thermalcognition.align.</code><code class="sig-name descname">get_ratio</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image1</span></em>, <em class="sig-param"><span class="n">image2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.align.get_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the scale ratio between row and column dimensions of two images. If height and width dimensions are different,
+throws an error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image1</strong> – (h, w, 3) or (h, w) array
+Image to be compared</p></li>
+<li><p><strong>image2</strong> – (h, w, 3) or (h, w) array
+Reference image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float
+Ratio between image1 and the reference image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.align.resize_visible_flirone">
+<code class="sig-prename descclassname">thermalcognition.align.</code><code class="sig-name descname">resize_visible_flirone</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">visible_image</span></em>, <em class="sig-param"><span class="n">thermal_image</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.align.resize_visible_flirone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resize visible image using thermal image. Used in VIS-TH database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>visible_image</strong> – (h, w, 3) ndarray
+Visible image on which face was detected</p></li>
+<li><p><strong>thermal_image</strong> – (h, w) ndarray
+Thermal image to align</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple
+visible_face and thermal_face</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-thermalcognition.calibration">
+<span id="calibration"></span><h2>calibration<a class="headerlink" href="#module-thermalcognition.calibration" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions for calibration temperature in thermal videos with a temperature colorbar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright</dt>
+<dd class="field-odd"><ol class="loweralpha simple" start="3">
+<li><p>2020 EPHE</p></li>
+</ol>
+</dd>
+<dt class="field-even">license</dt>
+<dd class="field-even"><p>MIT License, see LICENSE for details</p>
+</dd>
+<dt class="field-odd">author</dt>
+<dd class="field-odd"><p>Guillaume Cathelain</p>
+</dd>
+<dt class="field-even">organization</dt>
+<dd class="field-even"><p>EPHE</p>
+</dd>
+<dt class="field-odd">contact</dt>
+<dd class="field-odd"><p><a class="reference external" href="mailto:guillaume&#46;cathelain&#37;&#52;&#48;gmail&#46;com">guillaume<span>&#46;</span>cathelain<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+</dd>
+<dt class="field-even">date</dt>
+<dd class="field-even"><p>22/12/2020</p>
+</dd>
+<dt class="field-odd">version</dt>
+<dd class="field-odd"><p>0.0</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt id="thermalcognition.calibration.fill_tempscale_df">
+<code class="sig-prename descclassname">thermalcognition.calibration.</code><code class="sig-name descname">fill_tempscale_df</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tempscale_df</span></em>, <em class="sig-param"><span class="n">videodata</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.calibration.fill_tempscale_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fills a discrete temperature scale DataFrame with the previous temperature limits values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tempscale_df</strong> – pd.DataFrame
+Containing frame indices of temperature changes and the colorbar limits values.</p></li>
+<li><p><strong>videodata</strong> – (n, h, w, 3) ndarray
+RGB frames of a video including a colorbar</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>pd.DataFrame
+Containing the lower and upper temperature in colorbar for every frame.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.calibration.fit_colorscale">
+<code class="sig-prename descclassname">thermalcognition.calibration.</code><code class="sig-name descname">fit_colorscale</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image</span></em>, <em class="sig-param"><span class="n">y_low</span><span class="o">=</span><span class="default_value">17</span></em>, <em class="sig-param"><span class="n">y_up</span><span class="o">=</span><span class="default_value">- 18</span></em>, <em class="sig-param"><span class="n">x_pos</span><span class="o">=</span><span class="default_value">340</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.calibration.fit_colorscale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get colorscale of a thermal frame, where part of the frame is a vertical colorbar for temperature.
+Default parameters are given for the Testo camera settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> – (h, w, 3) ndarray
+(R,G,B) float features ranging from 0. to 1.</p></li>
+<li><p><strong>y_low</strong> – int
+Vertical lower position of the colorbar</p></li>
+<li><p><strong>y_up</strong> – int
+Vertical upper position of the colorbar</p></li>
+<li><p><strong>x_pos</strong> – int
+Horizontal position of the colorbar</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>scikit-learn linear regression model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.calibration.fit_temperature">
+<code class="sig-prename descclassname">thermalcognition.calibration.</code><code class="sig-name descname">fit_temperature</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rgb_image</span></em>, <em class="sig-param"><span class="n">temperature_image</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.calibration.fit_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit linear regression from first frame of the video, when temperature array is directly available.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rgb_image</strong> – (h, w, 3) ndarray
+(R,G,B) float features ranging from 0. to 1.</p></li>
+<li><p><strong>temperature_image</strong> – (h, w) ndarray
+T float feature in °C degrees</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>scikit-learn linear regression model</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.calibration.frame_has_changed">
+<code class="sig-prename descclassname">thermalcognition.calibration.</code><code class="sig-name descname">frame_has_changed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">videodata</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.calibration.frame_has_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return frame indices when the image changes in time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>videodata</strong> – (n, h, w, 3) ndarray
+a video</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ndarray
+Indices of image changes in time</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.calibration.get_temperature_float">
+<code class="sig-prename descclassname">thermalcognition.calibration.</code><code class="sig-name descname">get_temperature_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img</span></em>, <em class="sig-param"><span class="n">config</span><span class="o">=</span><span class="default_value">'--psm 10 --oem 3'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.calibration.get_temperature_float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds temperature float in image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> – (h,w, 3) ndarray
+RGB image with colorbar</p></li>
+<li><p><strong>config</strong> – string
+Config option of the Tesseract model</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float
+Temperature</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.calibration.get_temperature_scale">
+<code class="sig-prename descclassname">thermalcognition.calibration.</code><code class="sig-name descname">get_temperature_scale</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frame</span></em>, <em class="sig-param"><span class="n">interpolation_factor</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">text_size</span><span class="o">=</span><span class="default_value">(11, 35)</span></em>, <em class="sig-param"><span class="n">up_text_pos</span><span class="o">=</span><span class="default_value">(1, 325)</span></em>, <em class="sig-param"><span class="n">low_text_pos</span><span class="o">=</span><span class="default_value">(- 16, 325)</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.calibration.get_temperature_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds upper and lower limit of a Testo temperature frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame</strong> – (h,w, 3) ndarray
+RGB image with colorbar</p></li>
+<li><p><strong>interpolation_factor</strong> – int
+Interpolating digits makes it easier to recognize characters</p></li>
+<li><p><strong>text_size</strong> – (h, w) tuple
+Shape of the box where to look for digits</p></li>
+<li><p><strong>up_text_pos</strong> – (y, x) tuple
+Location of the box related to the upper temperature limit of the colorbar</p></li>
+<li><p><strong>low_text_pos</strong> – (y, x) tuple
+Location of the box related to the lower temperature limit of the colorbar</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple
+(lower_temp, upper_temp) found in the frame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.calibration.get_tempscale_df">
+<code class="sig-prename descclassname">thermalcognition.calibration.</code><code class="sig-name descname">get_tempscale_df</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">videodata</span></em>, <em class="sig-param"><span class="n">text_size</span><span class="o">=</span><span class="default_value">(11, 35)</span></em>, <em class="sig-param"><span class="n">up_text_pos</span><span class="o">=</span><span class="default_value">(1, 325)</span></em>, <em class="sig-param"><span class="n">low_text_pos</span><span class="o">=</span><span class="default_value">(- 16, 325)</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.calibration.get_tempscale_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>When colorbar changes in time, new temperature limits are recognized. Default values for Testo videos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>videodata</strong> – (n, h, w, 3) ndarray
+RGB frames of a video including a colorbar</p></li>
+<li><p><strong>text_size</strong> – (h, w) tuple
+Shape of the box where to look for digits</p></li>
+<li><p><strong>up_text_pos</strong> – (y, x) tuple
+Location of the box related to the upper temperature limit of the colorbar</p></li>
+<li><p><strong>low_text_pos</strong> – (y, x) tuple
+Location of the box related to the lower temperature limit of the colorbar</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>pd.DataFrame
+Containing frame indices of temperature changes and the colorbar limits values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.calibration.predict_temperature">
+<code class="sig-prename descclassname">thermalcognition.calibration.</code><code class="sig-name descname">predict_temperature</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rgb_image</span></em>, <em class="sig-param"><span class="n">linreg_model</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.calibration.predict_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict temperature of a frame using a linear regression model on the visible image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rgb_image</strong> – (h, w, 3) ndarray
+(R,G,B) float features ranging from 0. to 1.</p></li>
+<li><p><strong>linreg_model</strong> – scikit-learn linear regression model
+Converts RGB to temperature</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(h, w) ndarray
+T float feature in °C degrees</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.calibration.predict_temperature_video">
+<code class="sig-prename descclassname">thermalcognition.calibration.</code><code class="sig-name descname">predict_temperature_video</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rgb_videodata</span></em>, <em class="sig-param"><span class="n">linreg_model</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="o">=</span><span class="default_value">1000000</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.calibration.predict_temperature_video" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict temperature of a video using a linear regression model on the visible image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rgb_videodata</strong> – (n, h, w, 3) ndarray
+(R,G,B) float features ranging from 0. to 1.</p></li>
+<li><p><strong>linreg_model</strong> – scikit-learn linear regression model
+Converts RGB to temperature</p></li>
+<li><p><strong>batch_size</strong> – int
+Number of pixels to process by iteration</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(h, w) ndarray
+T float feature in °C degrees</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.calibration.rgb2temp_video">
+<code class="sig-prename descclassname">thermalcognition.calibration.</code><code class="sig-name descname">rgb2temp_video</code><span class="sig-paren">(</span><em class="sig-param">videodata</em>, <em class="sig-param">tempscale_df</em>, <em class="sig-param">thermal_image_shape=(240</em>, <em class="sig-param">320)</em>, <em class="sig-param">dtype=&lt;class 'numpy.float16'&gt;</em>, <em class="sig-param">batch_size=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.calibration.rgb2temp_video" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts visible video into temperature video</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>videodata</strong> – (n, h, w, 3) ndarray
+RGB frames of a video including a colorbar</p></li>
+<li><p><strong>tempscale_df</strong> – pd.DataFrame
+Containing frame indices of temperature changes and the colorbar limits values.</p></li>
+<li><p><strong>thermal_image_shape</strong> – (h,w) tuple
+Shape of the temperature image, excluding the colorbar, starting from upper left corner</p></li>
+<li><p><strong>dtype</strong> – numpy type
+np.float16, np.float32, np.double, np.long depending of the coding of the temperature
+values</p></li>
+<li><p><strong>batch_size</strong> – int
+maximum number of frames used by iteration to avoid memory issues</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(n, h, w) ndarray
+Thermal frames of a video</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.calibration.temperature_has_changed_vector">
+<code class="sig-prename descclassname">thermalcognition.calibration.</code><code class="sig-name descname">temperature_has_changed_vector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">videodata</span></em>, <em class="sig-param"><span class="n">text_size</span><span class="o">=</span><span class="default_value">(11, 35)</span></em>, <em class="sig-param"><span class="n">up_text_pos</span><span class="o">=</span><span class="default_value">(1, 325)</span></em>, <em class="sig-param"><span class="n">low_text_pos</span><span class="o">=</span><span class="default_value">(- 16, 325)</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.calibration.temperature_has_changed_vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return frame indices when the colorbar changes in time. Default values for Testo videos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>videodata</strong> – (n, h, w, 3) ndarray
+RGB frames of a video including a colorbar</p></li>
+<li><p><strong>text_size</strong> – (h, w) tuple
+Shape of the box where to look for digits</p></li>
+<li><p><strong>up_text_pos</strong> – (y, x) tuple
+Location of the box related to the upper temperature limit of the colorbar</p></li>
+<li><p><strong>low_text_pos</strong> – (y, x) tuple
+Location of the box related to the lower temperature limit of the colorbar</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ndarray
+Indices of colorbar changes in time</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-thermalcognition.landmarks">
+<span id="landmarks"></span><h2>landmarks<a class="headerlink" href="#module-thermalcognition.landmarks" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions for extracting landmarks from thermal images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright</dt>
+<dd class="field-odd"><ol class="loweralpha simple" start="3">
+<li><p>2020 EPHE</p></li>
+</ol>
+</dd>
+<dt class="field-even">license</dt>
+<dd class="field-even"><p>MIT License, see LICENSE for details</p>
+</dd>
+<dt class="field-odd">author</dt>
+<dd class="field-odd"><p>Guillaume Cathelain</p>
+</dd>
+<dt class="field-even">organization</dt>
+<dd class="field-even"><p>EPHE</p>
+</dd>
+<dt class="field-odd">contact</dt>
+<dd class="field-odd"><p><a class="reference external" href="mailto:guillaume&#46;cathelain&#37;&#52;&#48;gmail&#46;com">guillaume<span>&#46;</span>cathelain<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+</dd>
+<dt class="field-even">date</dt>
+<dd class="field-even"><p>22/12/2020</p>
+</dd>
+<dt class="field-odd">version</dt>
+<dd class="field-odd"><p>0.0</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt id="thermalcognition.landmarks.load_fan">
+<code class="sig-prename descclassname">thermalcognition.landmarks.</code><code class="sig-name descname">load_fan</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">weights_path</span></em>, <em class="sig-param"><span class="n">device</span><span class="o">=</span><span class="default_value">'cuda'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.landmarks.load_fan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads face alignment net from Adrian Bulat.
+Trained models come from “<a class="reference external" href="https://www.adrianbulat.com/downloads/python-fan/2DFAN4-11f355bf06.pth.tar">https://www.adrianbulat.com/downloads/python-fan/2DFAN4-11f355bf06.pth.tar</a>”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>weights_path</strong> – string
+Location of the compressed weights object</p></li>
+<li><p><strong>device</strong> – “cuda” or “cpu”
+Whether use a GPU or a CPU</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>torch nn
+The face alignment neural network for landmarks detection</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.landmarks.postprocess_landmarks">
+<code class="sig-prename descclassname">thermalcognition.landmarks.</code><code class="sig-name descname">postprocess_landmarks</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pts</span></em>, <em class="sig-param"><span class="n">crops</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">h</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">center</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">net_resolution</span><span class="o">=</span><span class="default_value">256</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'auto'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.landmarks.postprocess_landmarks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepares superposition of landmarks on the original figure</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pts</strong> – (68, 2) ndarray
+Face landmarks and their row and column position</p></li>
+<li><p><strong>crops</strong> – tuple of integers
+Indices of top, bottom, left, and right crops of the original image</p></li>
+<li><p><strong>h</strong> – int
+height of the original image</p></li>
+<li><p><strong>center</strong> – ndarray
+Center of the face</p></li>
+<li><p><strong>scale</strong> – float
+Scale of the face</p></li>
+<li><p><strong>mode</strong> – “auto” or “manual”
+Whether face detection is manual or automatic</p></li>
+<li><p><strong>net_resolution</strong> – int
+Size of the input layer of the neural network. Default for FAN</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(68, 2) ndarray
+Face landmarks and their row and column position in the original figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.landmarks.predict_landmarks">
+<code class="sig-prename descclassname">thermalcognition.landmarks.</code><code class="sig-name descname">predict_landmarks</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image</span></em>, <em class="sig-param"><span class="n">net</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.landmarks.predict_landmarks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predicts landmarks of the face.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> – (h, w, 3) ndarray
+Image of the face in RGB</p></li>
+<li><p><strong>net</strong> – torch nn
+The FAN network for landmarks detection</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(68, 2) ndarray
+Face landmarks and their row and column position</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.landmarks.predict_landmarks_video">
+<code class="sig-prename descclassname">thermalcognition.landmarks.</code><code class="sig-name descname">predict_landmarks_video</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">videodata</span></em>, <em class="sig-param"><span class="n">video_path</span></em>, <em class="sig-param"><span class="n">landmarks_detector_path</span></em>, <em class="sig-param"><span class="n">n_landmarks</span><span class="o">=</span><span class="default_value">68</span></em>, <em class="sig-param"><span class="n">decimate</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">dpi</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">device</span><span class="o">=</span><span class="default_value">'cuda'</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.landmarks.predict_landmarks_video" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predicts landmarks of the face video.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>videodata</strong> – (n, h, w, 3) ndarray
+Visible video of the face</p></li>
+<li><p><strong>video_path</strong> – string
+The video path</p></li>
+<li><p><strong>landmarks_detector_path</strong> – string
+Location of the compressed weights object</p></li>
+<li><p><strong>n_landmarks</strong> – int
+Number of landmarks detected by frame</p></li>
+<li><p><strong>decimate</strong> – int
+Decimation factor to shorten computation time</p></li>
+<li><p><strong>dpi</strong> – int
+Resolution of output image</p></li>
+<li><p><strong>device</strong> – “cuda” or “cpu”
+Whether use a GPU or a CPU</p></li>
+<li><p><strong>save</strong> – bool
+Wether to save landmarks as mp4 and csv files</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>pd.DataFrame
+Contains landmarks position at every frame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.landmarks.preprocess_face">
+<code class="sig-prename descclassname">thermalcognition.landmarks.</code><code class="sig-name descname">preprocess_face</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image</span></em>, <em class="sig-param"><span class="n">crops</span></em>, <em class="sig-param"><span class="n">net_resolution</span><span class="o">=</span><span class="default_value">256</span></em>, <em class="sig-param"><span class="n">device</span><span class="o">=</span><span class="default_value">'cuda'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.landmarks.preprocess_face" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare face for landmark detection using FAN.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> – (h, w, 3) or (h, w) ndarray
+Image of the face</p></li>
+<li><p><strong>crops</strong> – tuple of integers
+Indices of top, bottom, left, and right crops</p></li>
+<li><p><strong>net_resolution</strong> – int
+Size of the input layer of the neural network. Default for FAN</p></li>
+<li><p><strong>device</strong> – “cpu” or “cuda”
+Whether to use GPU or CPU</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple
+(h, w, 3) ndarray image of the face in RGB, center of the face, scale of the face</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-thermalcognition.reader">
+<span id="reader"></span><h2>reader<a class="headerlink" href="#module-thermalcognition.reader" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions for reading and extracting face of thermal videos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright</dt>
+<dd class="field-odd"><ol class="loweralpha simple" start="3">
+<li><p>2020 EPHE</p></li>
+</ol>
+</dd>
+<dt class="field-even">license</dt>
+<dd class="field-even"><p>MIT License, see LICENSE for details</p>
+</dd>
+<dt class="field-odd">author</dt>
+<dd class="field-odd"><p>Guillaume Cathelain</p>
+</dd>
+<dt class="field-even">organization</dt>
+<dd class="field-even"><p>EPHE</p>
+</dd>
+<dt class="field-odd">contact</dt>
+<dd class="field-odd"><p><a class="reference external" href="mailto:guillaume&#46;cathelain&#37;&#52;&#48;gmail&#46;com">guillaume<span>&#46;</span>cathelain<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+</dd>
+<dt class="field-even">date</dt>
+<dd class="field-even"><p>22/12/2020</p>
+</dd>
+<dt class="field-odd">version</dt>
+<dd class="field-odd"><p>0.0</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt id="thermalcognition.reader.crop">
+<code class="sig-prename descclassname">thermalcognition.reader.</code><code class="sig-name descname">crop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image</span></em>, <em class="sig-param"><span class="n">center</span></em>, <em class="sig-param"><span class="n">scale</span></em>, <em class="sig-param"><span class="n">resolution</span><span class="o">=</span><span class="default_value">256.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.reader.crop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Center crops an image or set of heatmaps</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> – ndarray
+an rgb image</p></li>
+<li><p><strong>center</strong> – ndarray
+the center of the object, usually the same as of the bounding box</p></li>
+<li><p><strong>scale</strong> – float
+scale of the face</p></li>
+<li><p><strong>resolution</strong> – float
+the size of the output cropped image (default: {256.0})</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ndarray
+an rgb image, cropped around the center</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.reader.crop_face">
+<code class="sig-prename descclassname">thermalcognition.reader.</code><code class="sig-name descname">crop_face</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image</span></em>, <em class="sig-param"><span class="n">crops</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'thermal'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.reader.crop_face" title="Permalink to this definition">¶</a></dt>
+<dd><p>Manually crops face of an image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> – (h, w) ndarray
+Contains the image to crop. Can also be a video.</p></li>
+<li><p><strong>crops</strong> – tuple of integers
+Indices of left, top, right, bottom crops. None if mode is auto</p></li>
+<li><p><strong>mode</strong> – “thermal” or “visible”
+The nature of the input image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(h, w) ndarray
+Image or video of the face</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.reader.get_crops">
+<code class="sig-prename descclassname">thermalcognition.reader.</code><code class="sig-name descname">get_crops</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image</span></em>, <em class="sig-param"><span class="n">path_to_detector</span></em>, <em class="sig-param"><span class="n">device</span><span class="o">=</span><span class="default_value">'cuda'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.reader.get_crops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detect faces automatically with a SFD detector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> – (h, w, 3) ndarray
+Contains the image to crop. Can also be a video.</p></li>
+<li><p><strong>path_to_detector</strong> – (h, w, 3) ndarray
+Contains the image to crop. Can also be a video.</p></li>
+<li><p><strong>device</strong> – “cuda” or “cpu”
+Whether to use GPU or CPU</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple of integers
+Indices of top, bottom, left, and right crops. None if mode is auto</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.reader.get_video_info">
+<code class="sig-prename descclassname">thermalcognition.reader.</code><code class="sig-name descname">get_video_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">video_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.reader.get_video_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the statistics of a video using FFProbe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>video_path</strong> – string
+The video path</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple
+(duration, nb_frames, fps) of the video using FFProbe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.reader.read_flir_image_metadata">
+<code class="sig-prename descclassname">thermalcognition.reader.</code><code class="sig-name descname">read_flir_image_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.reader.read_flir_image_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads FLIR image metadata using Exiftool.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>image_path</strong> – string
+Reads FLIR .jpg temperature image.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>pd.Dataframe
+Contains Exiftool metadata tags, raw values and tokenize value and unit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.reader.read_flir_thermal_image">
+<code class="sig-prename descclassname">thermalcognition.reader.</code><code class="sig-name descname">read_flir_thermal_image</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_path</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'FlirFileSDK'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.reader.read_flir_thermal_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads FLIR .jpg temperature image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_path</strong> – string
+Path of the .jpg image</p></li>
+<li><p><strong>mode</strong> – “FlirFileSDK” or “Exiftool”
+Exiftool is experimental and gives bad results</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(h, w) ndarray
+Temperature image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.reader.read_flir_video">
+<code class="sig-prename descclassname">thermalcognition.reader.</code><code class="sig-name descname">read_flir_video</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">video_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.reader.read_flir_video" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads FLIR .seq or .csq temperature video.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>video_path</strong> – string
+Path of the video</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(n, h, w) ndarray
+The raw temperature video</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.reader.read_flir_visible_image">
+<code class="sig-prename descclassname">thermalcognition.reader.</code><code class="sig-name descname">read_flir_visible_image</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.reader.read_flir_visible_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads FLIR .jpg embedded visible image, using Exiftool. Works with PiP or MSX mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>image_path</strong> – string
+Path of the .jpg image</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(h, w, 3) ndarray
+Visible image, with 8 bits integers</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.reader.read_testo_video">
+<code class="sig-prename descclassname">thermalcognition.reader.</code><code class="sig-name descname">read_testo_video</code><span class="sig-paren">(</span><em class="sig-param">video_path</em>, <em class="sig-param">text_size=(11</em>, <em class="sig-param">35)</em>, <em class="sig-param">up_text_pos=(1</em>, <em class="sig-param">325)</em>, <em class="sig-param">low_text_pos=(-16</em>, <em class="sig-param">325)</em>, <em class="sig-param">thermal_image_shape=(240</em>, <em class="sig-param">320)</em>, <em class="sig-param">dtype=&lt;class 'numpy.float16'&gt;</em>, <em class="sig-param">batch_size=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.reader.read_testo_video" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads Testo .wmv thermal video.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>video_path</strong> – string
+The video path</p></li>
+<li><p><strong>text_size</strong> – (h, w) tuple
+Shape of the box where to look for digits</p></li>
+<li><p><strong>up_text_pos</strong> – (y, x) tuple
+Location of the box related to the upper temperature limit of the colorbar</p></li>
+<li><p><strong>low_text_pos</strong> – (y, x) tuple
+Location of the box related to the lower temperature limit of the colorbar</p></li>
+<li><p><strong>thermal_image_shape</strong> – (h,w) tuple
+Shape of the temperature image, excluding the colorbar, starting from upper left corner</p></li>
+<li><p><strong>dtype</strong> – numpy type
+np.float16, np.float32, np.double, np.long depending of the coding of the temperature
+values</p></li>
+<li><p><strong>batch_size</strong> – int
+maximum number of frames used by iteration to avoid memory issues</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(n, h, w) ndarray
+Thermal frames of a video</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.reader.read_testo_video_with_firstframe">
+<code class="sig-prename descclassname">thermalcognition.reader.</code><code class="sig-name descname">read_testo_video_with_firstframe</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">video_path</span></em>, <em class="sig-param"><span class="n">xlsx_path</span></em>, <em class="sig-param"><span class="n">thermal_image_shape</span><span class="o">=</span><span class="default_value">(240, 320)</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="o">=</span><span class="default_value">1000</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.reader.read_testo_video_with_firstframe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits the temperature and colors with the first frame Excel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>video_path</strong> – string
+The video path</p></li>
+<li><p><strong>xlsx_path</strong> – string
+The temperature Excel path of the first frame</p></li>
+<li><p><strong>thermal_image_shape</strong> – (h,w) tuple
+Shape of the temperature image</p></li>
+<li><p><strong>batch_size</strong> – int
+maximum number of frames used by iteration to avoid memory issues</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(n, h, w) ndarray
+Thermal frames of a video</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.reader.tokenize_unit_value">
+<code class="sig-prename descclassname">thermalcognition.reader.</code><code class="sig-name descname">tokenize_unit_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">raw_value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.reader.tokenize_unit_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splits a raw value string into the related value and unit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>raw_value</strong> – string</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple
+Contains (value, unit)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-thermalcognition.synchronization">
+<span id="synchronization"></span><h2>synchronization<a class="headerlink" href="#module-thermalcognition.synchronization" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions for extracting a lamp temperature, that is switched on at stimulus start and off at
+stimulus stop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright</dt>
+<dd class="field-odd"><ol class="loweralpha simple" start="3">
+<li><p>2020 EPHE</p></li>
+</ol>
+</dd>
+<dt class="field-even">license</dt>
+<dd class="field-even"><p>MIT License, see LICENSE for details</p>
+</dd>
+<dt class="field-odd">author</dt>
+<dd class="field-odd"><p>Guillaume Cathelain</p>
+</dd>
+<dt class="field-even">organization</dt>
+<dd class="field-even"><p>EPHE</p>
+</dd>
+<dt class="field-odd">contact</dt>
+<dd class="field-odd"><p><a class="reference external" href="mailto:guillaume&#46;cathelain&#37;&#52;&#48;gmail&#46;com">guillaume<span>&#46;</span>cathelain<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+</dd>
+<dt class="field-even">date</dt>
+<dd class="field-even"><p>23/12/2020</p>
+</dd>
+<dt class="field-odd">version</dt>
+<dd class="field-odd"><p>0.0</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt id="thermalcognition.synchronization.get_lamp_temperature">
+<code class="sig-prename descclassname">thermalcognition.synchronization.</code><code class="sig-name descname">get_lamp_temperature</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">videodata</span></em>, <em class="sig-param"><span class="n">crops</span><span class="o">=</span><span class="default_value">(0, 120, 0, 80)</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.synchronization.get_lamp_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds lamp temperature, as the maximum of temperature in a specific region</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>videodata</strong> – (n, h, w) ndarray
+Thermal video of the face</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(n,) ndarray
+Maximum temperature of the lamp</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-thermalcognition.vitals">
+<span id="vitals"></span><h2>vitals<a class="headerlink" href="#module-thermalcognition.vitals" title="Permalink to this headline">¶</a></h2>
+<p>This module contains functions for extracting respiratory and heart rate from thermal videos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright</dt>
+<dd class="field-odd"><ol class="loweralpha simple" start="3">
+<li><p>2020 EPHE</p></li>
+</ol>
+</dd>
+<dt class="field-even">license</dt>
+<dd class="field-even"><p>MIT License, see LICENSE for details</p>
+</dd>
+<dt class="field-odd">author</dt>
+<dd class="field-odd"><p>Guillaume Cathelain</p>
+</dd>
+<dt class="field-even">organization</dt>
+<dd class="field-even"><p>EPHE</p>
+</dd>
+<dt class="field-odd">contact</dt>
+<dd class="field-odd"><p><a class="reference external" href="mailto:guillaume&#46;cathelain&#37;&#52;&#48;gmail&#46;com">guillaume<span>&#46;</span>cathelain<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+</dd>
+<dt class="field-even">date</dt>
+<dd class="field-even"><p>22/12/2020</p>
+</dd>
+<dt class="field-odd">version</dt>
+<dd class="field-odd"><p>0.0</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt id="thermalcognition.vitals.extrema_trajectory">
+<code class="sig-prename descclassname">thermalcognition.vitals.</code><code class="sig-name descname">extrema_trajectory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">video</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'max'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.vitals.extrema_trajectory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if extrema temperature of the video have a stable position in time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>video</strong> – (n, h, w) array
+Contains the temperatures of the region of interest</p></li>
+<li><p><strong>mode</strong> – “min”, or “max”
+Determines the selected statistics of each ROI frame</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(n, 3) array
+Contains row indices, column indices, and temperature values of extrema in time</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.vitals.filter_physio">
+<code class="sig-prename descclassname">thermalcognition.vitals.</code><code class="sig-name descname">filter_physio</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">temp_matrix</span></em>, <em class="sig-param"><span class="n">fps</span><span class="o">=</span><span class="default_value">100</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.vitals.filter_physio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters physiological activities in the temperature matrix</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>temp_matrix</strong> – (n, line_resolution)</p></li>
+<li><p><strong>fps</strong> – float
+Sampling rate</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(n,) ndarray
+Maximum of the temperature segments, filtered in the 0.1 to 5 Hz frequency band.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.vitals.get_1dstatistics">
+<code class="sig-prename descclassname">thermalcognition.vitals.</code><code class="sig-name descname">get_1dstatistics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">video</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'max'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.vitals.get_1dstatistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get 1d statistics of a ROI video, frame by frame</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>video</strong> – (n, h, w) ndarray
+Contains the temperatures of the region of interest</p></li>
+<li><p><strong>mode</strong> – “mean”, “median”, “min”, or “max”
+Determines the selected statistics of each ROI frame</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>1d array
+Statistics of the ROI video</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.vitals.get_line_temp">
+<code class="sig-prename descclassname">thermalcognition.vitals.</code><code class="sig-name descname">get_line_temp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span></em>, <em class="sig-param"><span class="n">videodata</span></em>, <em class="sig-param"><span class="n">landmarks_df</span></em>, <em class="sig-param"><span class="n">landmark_i</span><span class="o">=</span><span class="default_value">36</span></em>, <em class="sig-param"><span class="n">landmark_j</span><span class="o">=</span><span class="default_value">31</span></em>, <em class="sig-param"><span class="n">line_resolution</span><span class="o">=</span><span class="default_value">100</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.vitals.get_line_temp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the temperature of a line between two landmarks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> – int
+Index of the frame</p></li>
+<li><p><strong>videodata</strong> – (n, h, w) array
+Contains the temperatures of the region of interest</p></li>
+<li><p><strong>landmarks_df</strong> – pd.DataFrame
+Contains landmarks position at every frame</p></li>
+<li><p><strong>landmark_i</strong> – int
+Index of a landmark, default to right side of nose</p></li>
+<li><p><strong>landmark_j</strong> – int
+Index of a landmark, default to left side of right eye</p></li>
+<li><p><strong>line_resolution</strong> – int
+Number of interpolated points of the line from landmark_i to landmark_j</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(n, line_resolution) ndarray
+Temperature line.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.vitals.get_matrix_temp">
+<code class="sig-prename descclassname">thermalcognition.vitals.</code><code class="sig-name descname">get_matrix_temp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">videodata</span></em>, <em class="sig-param"><span class="n">landmarks_df</span></em>, <em class="sig-param"><span class="n">landmark_i</span><span class="o">=</span><span class="default_value">36</span></em>, <em class="sig-param"><span class="n">landmark_j</span><span class="o">=</span><span class="default_value">31</span></em>, <em class="sig-param"><span class="n">line_resolution</span><span class="o">=</span><span class="default_value">100</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.vitals.get_matrix_temp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Concatenation of several temperature lines</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>videodata</strong> – (n, h, w) array
+Contains the temperatures of the region of interest</p></li>
+<li><p><strong>landmarks_df</strong> – pd.DataFrame
+Contains landmarks position at every frame</p></li>
+<li><p><strong>landmark_i</strong> – int
+Index of a landmark, default to right side of nose</p></li>
+<li><p><strong>landmark_j</strong> – int
+Index of a landmark, default to left side of right eye</p></li>
+<li><p><strong>line_resolution</strong> – int
+Number of interpolated points of the line from landmark_i to landmark_j</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(n, line_resolution) ndarray
+Matrix of temperature lines along time.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="thermalcognition.vitals.roi_fourier_1dspectrum">
+<code class="sig-prename descclassname">thermalcognition.vitals.</code><code class="sig-name descname">roi_fourier_1dspectrum</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">video</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'mean'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#thermalcognition.vitals.roi_fourier_1dspectrum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get 1d Fourier spectrum of a ROI video, to find fundamentals of heart rate and respiratory rate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>video</strong> – (n, h, w) ndarray
+Containing the temperatures of the region of interest</p></li>
+<li><p><strong>mode</strong> – “mean”, “median”, “min”, or “max”
+Determines the selected statistics of each ROI frame</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>1d array
+Magnitude of the unilateral spectrum of the ROI 1d statistics</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">thermalcognition</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-thermalcognition.align">align</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-thermalcognition.calibration">calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-thermalcognition.landmarks">landmarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-thermalcognition.reader">reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-thermalcognition.synchronization">synchronization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-thermalcognition.vitals">vitals</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="quickstart.html" title="previous chapter">Getting Started</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Guillaume Cathelain.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/reference.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
